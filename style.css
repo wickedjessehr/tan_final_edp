@@ -1,0 +1,543 @@
+/* Vans Skate Shop Styles - Event-Driven Interactive */
+
+
+/* Color Scheme: Black #000, White #fff, Orange #FF6600, Gray #333 */
+
+
+/* Fonts: Bebas Neue (display), Roboto (body) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: #f8f8f8;
+}
+
+
+/* Header & Nav */
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #FF6600;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #FF6600;
+}
+
+.cart-toggle,
+.menu-toggle {
+    background: #FF6600;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.cart-toggle:hover,
+.menu-toggle:hover {
+    background: #e55a00;
+    transform: scale(1.05);
+}
+
+
+/* Sidebar */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: #000;
+    z-index: 2000;
+    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 2rem;
+    color: #fff;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sidebar-nav {
+    margin-bottom: 2rem;
+}
+
+.sidebar-nav .nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-nav .nav-links li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-nav .nav-links a {
+    display: block;
+    padding: 1rem 0;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #333;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.sidebar-nav .nav-links a:hover {
+    color: #FF6600;
+    padding-left: 1rem;
+}
+
+.sidebar-cart-divider {
+    height: 2px;
+    background: #FF6600;
+    margin: 2rem 0;
+    border-radius: 1px;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 40vh;
+}
+
+.cart-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-footer {
+    position: sticky;
+    bottom: 0;
+    background: #000;
+    padding-top: 1rem;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #FF6600;
+    color: #fff;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background: #e55a00;
+}
+
+
+/* Hero Parallax */
+
+.hero {
+    height: 100vh;
+    background: url('/home/clab2-s2/TAN_FINAL_EDP/media/tOQsmxC.jpg') center/cover no-repeat fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    transition: transform 0.1s ease-out;
+    opacity: 0;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.cta-btn {
+    background: #FF6600;
+    color: #fff;
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-btn:hover {
+    background: #e55a00;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 102, 0, 0.4);
+}
+
+
+/* Products */
+
+.products {
+    padding: 6rem 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.products.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.products h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: #000;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.1);
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FF6600;
+    margin-bottom: 1rem;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: #FF6600;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background: #e55a00;
+    transform: translateY(-2px);
+}
+
+
+/* Video Section */
+
+.video-section {
+    padding: 6rem 2rem;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.video-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#promoVideo {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(255, 102, 0, 0.3);
+}
+
+.video-status {
+    margin-top: 1rem;
+    font-weight: 700;
+    color: #FF6600;
+}
+
+
+/* Newsletter Form */
+
+.newsletter {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #FF6600, #e55a00);
+    color: #fff;
+    text-align: center;
+}
+
+.newsletter h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.newsletter p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+#newsletterForm {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+}
+
+#emailInput {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+}
+
+.form-btn {
+    padding: 1rem 2rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-btn:hover {
+    background: #333;
+    transform: scale(1.05);
+}
+
+
+/* Footer & Scroll Progress */
+
+.footer {
+    padding: 2rem;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    position: relative;
+}
+
+.scroll-progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: #FF6600;
+    width: 0%;
+    transition: width 0.1s ease;
+    z-index: 1001;
+}
+
+
+/* Responsive Design - Window Resize Event */
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none !important;
+    }
+    .sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    .hero-title {
+        font-size: 3rem;
+    }
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    #newsletterForm {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav {
+        padding: 1rem;
+    }
+    .products {
+        padding: 4rem 1rem 2rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle,
+    #cartToggleBtn {
+        display: block;
+    }
+}
+
+
+/* Scroll Animation Classes */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Smooth scrolling */
+
+html {
+    scroll-behavior: smooth;
+}

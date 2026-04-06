@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vans Skate Shop - Event-Driven Interactive Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Dynamic Sidebar Navigation / Cart Drawer -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Menu & Cart</h2>
+            <button id="closeSidebar" class="close-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#video">Promo</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-cart-divider"></div>
+        <div id="cartItems" class="cart-items">
+            <!-- Cart items populated dynamically -->
+        </div>
+        <div class="sidebar-footer">
+            <p>Total: $<span id="cartTotal">0</span></p>
+            <button id="checkoutBtn" class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Overlay for sidebar -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- Main Header - Sidebar Toggle -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h1>VANS</h1>
+            </div>
+            <div class="header-actions">
+                <button id="cartToggleBtn" class="cart-toggle">Cart (<span id="cartCount">0</span>)</button>
+                <button id="menuToggle" class="menu-toggle">☰ Menu</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Parallax Image -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Vans Skate Shop</h1>
+            <p class="hero-subtitle">Off the Wall Since 1966</p>
+            <button id="shopNowBtn" class="cta-btn">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <h2>Featured Kicks</h2>
+        <div class="products-grid">
+            <div class="product-card" data-price="89.99" data-name="Old Skool Black">
+                <img src="media/old-skol.jpeg" alt="Vans Old Skool Black" loading="lazy">
+                <div class="product-info">
+                    <h3>Old Skool Black</h3>
+                    <p class="price">$89.99</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-price="99.99" data-name="Authentic Checkerboard">
+                <img src="media/Authentic-Checkerboard-Shoe-VANS-Black-White-ALT2.avif" alt="Vans Authentic Checkerboard" loading="lazy">
+                <div class="product-info">
+                    <h3>Authentic Checkerboard</h3>
+                    <p class="price">$99.99</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-price="79.99" data-name="Slip-On Pro">
+                <img src="media/Skate-SlipOn-Shoe-VANS-BlackWhite-ALT1.avif" alt="Vans Slip-On Pro" loading="lazy">
+                <div class="product-info">
+                    <h3>Slip-On Pro</h3>
+                    <p class="price">$79.99</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-price="109.99" data-name="Sk8-Hi MTE">
+                <img src="media/Sk8Hi-Made-for-the-Makers-Shoe-VANS-ALT1.avif" alt="Vans Sk8-Hi MTE" loading="lazy">
+                <div class="product-info">
+                    <h3>Sk8-Hi MTE</h3>
+                    <p class="price">$109.99</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-price="94.99" data-name="Era Pro">
+                <img src="media/Skate-Era-Shoe-VANS-Black-White-ALT1.avif" alt="Vans Era Pro" loading="lazy">
+                <div class="product-info">
+                    <h3>Era Pro</h3>
+                    <p class="price">$94.99</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-price="119.99" data-name="UltraRange EXO">
+                <img src="media/UltraRange-EXO-Made-for-the-Makers-Shoe-VANS-ALT1.avif" alt="Vans UltraRange EXO" loading="lazy">
+                <div class="product-info">
+                    <h3>UltraRange EXO</h3>
+                    <p class="price">$119.99</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Video Section -->
+    <section id="video" class="video-section">
+        <h2>Skate Hard - Vans Promo</h2>
+        <div class="video-container">
+            <video id="promoVideo" controls preload="metadata" src="media/vans-promo.mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="videoStatus" class="video-status"></div>
+        </div>
+    </section>
+
+    <!-- Newsletter Form Section -->
+    <section id="newsletter" class="newsletter">
+        <h2>Join the Vans Crew</h2>
+        <p>Sign up for exclusive drops and skate news.</p>
+        <form id="newsletterForm">
+            <input type="email" id="emailInput" placeholder="Enter your email" required>
+            <button type="submit" class="form-btn">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Vans Skate Shop. Off the Wall. All rights reserved.</p>
+        <div id="scrollProgress" class="scroll-progress"></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
