@@ -129,17 +129,44 @@
 
     <!-- Newsletter Form Section -->
     <section id="newsletter" class="newsletter">
-        <h2>Join the Vans Crew</h2>
-        <p>Sign up for exclusive drops and skate news.</p>
+        <h2>Join the Vans Crew - Sign Up</h2>
+        <p>Create your account for exclusive drops and skate news.</p>
         <form id="newsletterForm">
-            <input type="email" id="emailInput" placeholder="Enter your email" required>
-            <button type="submit" class="form-btn">Subscribe</button>
+            <input type="text" id="usernameInput" placeholder="Username (min 3 chars)" required minlength="3">
+            <input type="email" id="emailInput" placeholder="Email" required>
+            <input type="password" id="passwordInput" placeholder="Password (min 6 chars)" required minlength="6">
+            <label>
+                <input type="checkbox" id="newsletterOptIn"> Also join newsletter
+            </label>
+            <button type="submit" class="form-btn">Sign Up</button>
         </form>
+        <p id="signupStatus" style="margin-top: 1rem; font-weight: bold;"></p>
     </section>
+
+    <!-- Keyboard Shortcuts Guide Modal -->
+    <div id="keyboardGuide" class="keyboard-guide">
+        <div class="guide-overlay"></div>
+        <div class="guide-content">
+            <div class="guide-header">
+                <h3>Keyboard Shortcuts</h3>
+                <button id="closeGuide" class="close-guide">&times;</button>
+            </div>
+            <ul class="shortcuts-list">
+                <li><kbd>G</kbd> Toggle this guide</li>
+                <li><kbd>D</kbd> Toggle Dark/Light mode</li>
+                <li><kbd>L</kbd> Light mode</li>
+                <li><kbd>C</kbd> Toggle Cart/Menu</li>
+                <li><kbd>A</kbd> Add random shoe to cart</li>
+                <li><kbd>H</kbd> Home | <kbd>S</kbd> Shop | <kbd>P</kbd> Promo | <kbd>N</kbd> Sign Up</li>
+                <li><kbd>ESC</kbd> Close sidebar/guide</li>
+                <li>Arrow keys control video (when focused)</li>
+            </ul>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 Vans Skate Shop. Off the Wall. All rights reserved.</p>
+        <p>&copy; 2026 Vans Shoe Shop. Off the Wall. All rights reserved.</p>
         <div id="scrollProgress" class="scroll-progress"></div>
     </footer>
 

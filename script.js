@@ -1,17 +1,30 @@
-/**
- * Vans Skate Shop - Complete Event-Driven Programming Demo
- * Implements ALL required events: click, keyboard, form submit, scroll, resize, load, hover, video, parallax, dynamic sidebar
- * Author: BLACKBOXAI
- */
 
 // Global State
 let cart = [];
 let cartTotal = 0;
 let cartCount = 0;
+let users = JSON.parse(localStorage.getItem('vansUsers')) || [];
+
+// Theme management functions
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    console.log(`Theme toggled to: ${isDark ? 'Dark' : 'Light'}`);
+}
+
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+}
 
 // 1. PAGE LOAD EVENT (5 points) - DOMContentLoaded initialization
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Page loaded - Initializing Vans Skate Shop');
+    
+    loadTheme();
 
     // Init cart display
     updateCartDisplay();
@@ -215,6 +228,26 @@ document.addEventListener('keydown', function(e) {
         return;
     }
 
+    // 'G' toggle keyboard guide
+    if (e.key.toLowerCase() === 'g') {
+        const guide = document.getElementById('keyboardGuide');
+        guide.classList.toggle('active');
+        console.log('Keyboard guide toggled');
+        return;
+    }
+    
+    // 'D' toggle dark mode, 'L' toggle light mode
+    if (e.key.toLowerCase() === 'd') {
+        toggleTheme();
+        return;
+    }
+    if (e.key.toLowerCase() === 'l') {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+        console.log('Theme set to Light');
+        return;
+    }
+
     // 'A' adds random shoe
     if (e.key === 'a' || e.key === 'A') {
         const products = [
@@ -254,11 +287,18 @@ document.querySelectorAll('.product-card').forEach(card => {
 document.getElementById('newsletterForm').addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent actual submit
 
-    const email = document.getElementById('emailInput').value;
-    const emailRegex = /^[^s@]+@[^s@]+.[^s@]+$/;
+    const email = document.getElementById('emailInput').value.trim();
+    const username = document.getElementById('usernameInput').value.trim();
+    const password = document.getElementById('passwordInput').value;
+    const newsletterOptIn = document.getElementById('newsletterOptIn').checked;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    if (username.length < 3) {
+        showSignupStatus('Username too short!', 'error');
+        return;
+    }
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address to join the Vans crew!');
+        showSignupStatus('Invalid email!', 'error');
         return;
     }
 
@@ -290,6 +330,18 @@ promoVideo.addEventListener('timeupdate', function() {
     const percent = (this.currentTime / this.duration) * 100;
     console.log(`Video progress: ${percent.toFixed(0)}%`);
 });
+
+// Guide close buttons
+document.getElementById('closeGuide').addEventListener('click', () => {
+    document.getElementById('keyboardGuide').classList.remove('active');
+});
+
+document.querySelector('.guide-overlay').addEventListener('click', () => {
+    document.getElementById('keyboardGuide').classList.remove('active');
+});
+
+// ESC closes guide too
+// Already handled in keydown
 
 // Dynamic Sidebar Navigation Links (scroll smoothly)
 document.querySelectorAll('.nav-links a').forEach(link => {
